@@ -13,12 +13,13 @@ function fetchNum(number) {
   });
 }
 
+//dispatching (WHICH CALLED PUT) action to the store
 function* workerSaga(action) {
   try {
-    const response = yield call(() => fetchNum(action.number));
-    const numbermsg = response.data.message;
+    const response = yield call(fetchNum, action.number);
+    const msg = response.data;
 
-    yield put({ type: API_C_SUCC, numbermsg });
+    yield put({ type: API_C_SUCC, msg });
   } catch (error) {
     yield put({ type: API_C_FAIL, error });
   }

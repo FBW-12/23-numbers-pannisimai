@@ -4,6 +4,7 @@ import "./App.css";
 
 import { connect } from "react-redux";
 import { API_C_REQ } from "./actions/actionTypes";
+import { actionChannel } from "redux-saga/effects";
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>asjpősjsfőfs</p>
+          <p>{msg}</p>
 
           <p>Insert a number</p>
 
@@ -48,13 +49,14 @@ const mapStateToProps = state => {
   return {
     fetching: state.fetching,
     dog: state.dog,
-    error: state.error
+    error: state.error,
+    msg: state.msg
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onRequestNumber: number => dispatch({ type: API_C_REQ, number })
+    onRequestNumber: number => dispatch({ type: API_C_REQ, number: number })
   };
 };
 
